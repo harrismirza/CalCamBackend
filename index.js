@@ -8,12 +8,12 @@ app.listen(port);
 var controller = require('./controller.js');
 
 router.get('/user/:userId', controller.getUserDetails);
-router.post('/user/:userId', controller.createNewUser)
-	.get()
-	.post(userController.createNewUser);
+router.get('/user/:itemId', controller.getItemDetails);
+router.get('/user/:userId/consume/:itemId', controller.consumeItem);
+router.get('/user/:userId/consumtion', controller.getDailyConsumpton);
 
-app.route('/user/:userId/consume/:food')
-	.get(userController.addItem);
+router.post('/user/:userId', controller.createNewUser);
+router.post('/user/:itemId', controller.createNewItem);
 
 
-console.log('REST API started on: ' + port)
+console.log('REST API started on: ' + port);
