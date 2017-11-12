@@ -23,7 +23,7 @@ var db = pgp(connectionString);
       });
     })
     .catch(function (err) {
-      return next(err);
+      res.status(500).json(err);
     });
   }
 
@@ -39,7 +39,7 @@ var db = pgp(connectionString);
       });
     })
     .catch(function (err) {
-      return next(err);
+      res.status(500).json(err);
     });
   }
   exports.createNewItem = function(req, res, next) {
@@ -55,7 +55,7 @@ var db = pgp(connectionString);
       });
     })
     .catch(function (err) {
-      return next(err);
+      res.status(500).json(err);
     });
   }
 
@@ -72,7 +72,7 @@ var db = pgp(connectionString);
       });
     })
     .catch(function (err) {
-      return next(err);
+      res.status(500).json(err);
     });
   }
 
@@ -90,7 +90,7 @@ var db = pgp(connectionString);
       });
     })
     .catch(function (err) {
-      return next(err);
+      res.status(500).json(err);
     });
   }
 
@@ -115,7 +115,7 @@ var db = pgp(connectionString);
       });
     })
     .catch(function (err) {
-      return next(err);
+      res.status(500).json(err);
     });
   }
 
