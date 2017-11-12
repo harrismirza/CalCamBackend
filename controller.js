@@ -16,11 +16,7 @@ var db = pgp(connectionString);
     db.one('SELECT * FROM users WHERE id = ${id}', req.body)
     .then(function(data) {
       res.status(200)
-      .json({
-        status: 'success',
-        data: data,
-        message: 'Recieved all of the user\'s details'
-      });
+      .json(data);
     })
     .catch(function (err) {
       res.status(500).json(err);
@@ -32,11 +28,7 @@ var db = pgp(connectionString);
     db.one('SELECT * FROM item WHERE barcode = ${barcode}', req.body)
     .then(function (data) {
       res.status(200)
-      .json({
-        status: 'success',
-        data: data,
-        message: 'Recieved all of the details for the item'
-      });
+      .json(data);
     })
     .catch(function (err) {
       res.status(500).json(err);
@@ -109,10 +101,7 @@ var db = pgp(connectionString);
       req.body)
     .then(function (data) {
       res.status(200)
-      .json({
-        status: 'success',
-        data: data
-      });
+      .json(data);
     })
     .catch(function (err) {
       res.status(500).json(err);
