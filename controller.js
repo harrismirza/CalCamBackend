@@ -97,7 +97,7 @@ var db = pgp(connectionString);
     date2.setHours(23);
     date2.setMinutes(59);
     date2.setSeconds(59);
-    db.any('SELECT SUM(calories) AS calories, SUM(energy) AS energy, SUM(fat) AS fat, SUM(saturates) AS saturates, SUM(carbohydrates) AS carbohydrates, SUM(sugars) AS sugars, SUM(protein) AS protein, SUM(salt) AS salt FROM ((consumed_item NATURAL JOIN item) NATURAL JOIN users) WHERE id = ${id} AND date < \'' + date2.toISOString() + '\' AND date > \'' + date.toISOString() + '\';'  ,
+    db.one('SELECT SUM(calories) AS calories, SUM(energy) AS energy, SUM(fat) AS fat, SUM(saturates) AS saturates, SUM(carbohydrates) AS carbohydrates, SUM(sugars) AS sugars, SUM(protein) AS protein, SUM(salt) AS salt FROM ((consumed_item NATURAL JOIN item) NATURAL JOIN users) WHERE id = ${id} AND date < \'' + date2.toISOString() + '\' AND date > \'' + date.toISOString() + '\';'  ,
       req.body)
     .then(function (data) {
       res.status(200)
