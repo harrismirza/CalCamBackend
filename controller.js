@@ -72,7 +72,7 @@ var db = pgp(connectionString);
     console.log("Consume Item: " + req.body);
     let date = new Date();
     db.none('INSERT INTO consumed_item(id, barcode, date) ' +
-      ' values(${id}, ${barcode}, ' + date.toISOString() + ')',
+      ' values(${id}, ${barcode}, \'' + date.toISOString() + '\')',
       req.body)
     .then(function () {
       res.status(200)
