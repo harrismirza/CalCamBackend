@@ -45,7 +45,7 @@ var db = pgp(connectionString);
   exports.createNewItem = function(req, res, next) {
     console.log("Create Item: " + req.body);
     db.none('INSERT INTO item(barcode, calories, energy, fat, saturates, carbohydrates, sugars, protein, salt)' +
-      'values(${barcode}, ${calories}, ${energy}, ${fat}, ${saturates}, ${carbohydrates}, ${sugars}, ${protein}, ${salt})',
+      ' values(${barcode}, ${calories}, ${energy}, ${fat}, ${saturates}, ${carbohydrates}, ${sugars}, ${protein}, ${salt})',
       req.body)
     .then(function () {
       res.status(200)
@@ -62,7 +62,7 @@ var db = pgp(connectionString);
   exports.createNewUser = function(req, res, next) {
     console.log("Create User: " + req.body);
     db.none('INSERT INTO app_user(id, email, name, calories_g, energy_g, fat_g, saturates_g, carbs_g, sugars_g, protein_g, salt_g)' +
-      'values(${id}, ${email}, ${name}, ${calories_g}, ${energy_g}, ${fat_g}, ${saturates_g}, ${carbs_g}, ${sugars_g}, ${protein_g}, ${salt_g})',
+      ' values(${id}, ${email}, ${name}, ${calories_g}, ${energy_g}, ${fat_g}, ${saturates_g}, ${carbs_g}, ${sugars_g}, ${protein_g}, ${salt_g})',
       req.body)
     .then(function () {
       res.status(200)
@@ -80,7 +80,7 @@ var db = pgp(connectionString);
     console.log("Consume Item: " + req.body);
     let date = new Date();
     db.none('INSERT INTO consumed_item(id, barcode, date) ' +
-      'values(${id}, ${barcode}, ' + date.toISOString() + ')',
+      ' values(${id}, ${barcode}, ' + date.toISOString() + ')',
       req.body)
     .then(function () {
       res.status(200)
