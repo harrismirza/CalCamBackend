@@ -29,7 +29,7 @@ var db = pgp(connectionString);
 
   exports.getItemDetails = function(req, res, next) {
     console.log("Item Details: " + req.body);
-    db.one('SELECT * FROM item WHERE id = ${id}', req.body)
+    db.one('SELECT * FROM item WHERE barcode = ${barcode}', req.body)
     .then(function (data) {
       res.status(200)
       .json({
