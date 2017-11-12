@@ -13,7 +13,7 @@ var db = pgp(connectionString);
 
   exports.getUserDetails = function(req, res, next) {
     console.log("User Details: " + req.body);
-    db.one('SELECT * FROM app_user WHERE id = ${id}', req.body)
+    db.one('SELECT * FROM users WHERE id = ${id}', req.body)
     .then(function(data) {
       res.status(200)
       .json({
@@ -61,7 +61,7 @@ var db = pgp(connectionString);
 
   exports.createNewUser = function(req, res, next) {
     console.log("Create User: " + req.body);
-    db.none('INSERT INTO app_user(id, email, name, calories_g, energy_g, fat_g, saturates_g, carbs_g, sugars_g, protein_g, salt_g)' +
+    db.none('INSERT INTO users(id, email, name, calories_g, energy_g, fat_g, saturates_g, carbs_g, sugars_g, protein_g, salt_g)' +
       ' values(${id}, ${email}, ${name}, ${calories_g}, ${energy_g}, ${fat_g}, ${saturates_g}, ${carbs_g}, ${sugars_g}, ${protein_g}, ${salt_g})',
       req.body)
     .then(function () {
@@ -105,7 +105,7 @@ var db = pgp(connectionString);
     date2.setHours(23);
     date2.setMinutes(59);
     date2.setSeconds(59);
-    db.any('SELECT SUM(calories), SUM(calories), SUM(energy), SUM(fat), SUM(saturates), SUM(carbohydrates), SUM(sugars), SUM(protein), SUM(salt) FROM ((consumed_item NATURAL JOIN item) NATURAL JOIN app_user) WHERE id = ${id} AND date < ' + date2.toISOString() + ' AND date > ' + date.toISOString() + ';'  ,
+    db.any('SELECT SUM(calories), SUM(calories), SUM(energy), SUM(fat), SUM(saturates), SUM(carbohydrates), SUM(sugars), SUM(protein), SUM(salt) FROM ((consumed_item NATURAL JOIN item) NATURAL JOIN users) WHERE id = ${id} AND date < ' + date2.toISOString() + ' AND date > ' + date.toISOString() + ';'  ,
       req.body)
     .then(function (data) {
       res.status(200)
