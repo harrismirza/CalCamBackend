@@ -54,7 +54,7 @@ var db = pgp(connectionString);
   exports.createNewUser = function(req, res, next) {
     console.log("Create User: " + req.body);
     db.none('INSERT INTO users(id, email, name, calories_g, energy_g, fat_g, saturates_g, carbs_g, sugars_g, protein_g, salt_g)' +
-      ' values(${id}, ${email}, ${name}, ${calories_g}, ${energy_g}, ${fat_g}, ${saturates_g}, ${carbs_g}, ${sugars_g}, ${protein_g}, ${salt_g})',
+      ' values (${id}, ${email}, ${name}, ${calories_g}, ${energy_g}, ${fat_g}, ${saturates_g}, ${carbs_g}, ${sugars_g}, ${protein_g}, ${salt_g})',
       req.body)
     .then(function () {
       res.status(200)
